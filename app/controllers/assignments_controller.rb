@@ -5,7 +5,7 @@ class AssignmentsController < ApplicationController
 
   # GET /assignments or /assignments.json
   def index
-    @assignments = @course.assignments
+    @assignments = @course.assignments.order(:sort_index)
   end
 
   # GET /assignments/1 or /assignments/1.json

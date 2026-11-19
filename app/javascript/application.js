@@ -8,3 +8,10 @@ window.bootstrap = bootstrap
 
 import "update_status"
 import "assignment_modal"
+
+import Sortable from "sortablejs"
+
+var el = document.getElementById('assignments');
+var sortable = Sortable.create(el, {
+  animation: 150
+});
