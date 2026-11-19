@@ -66,6 +66,17 @@ class AssignmentsController < ApplicationController
     render :show, formats: [:json]
   end
 
+  def update_sort_order
+    raise params.inspect
+    # id => sort_index
+    #
+    # {
+    #   1 => 0,
+    #   4 => 1,
+    #   3 => 2,
+    # }
+  end
+
   private
 
     def set_course

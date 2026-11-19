@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :courses do
     resources :assignments, :shallow => true do
       patch :update_status, :on => :member
+      patch :update_sort_order, :on => :collection
     end
   end
 
