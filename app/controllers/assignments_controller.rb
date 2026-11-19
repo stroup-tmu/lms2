@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
   before_action :set_assignment, only: %i[ show edit update destroy update_status ]
-  before_action :set_course, :only => [:index, :new, :create]
+  before_action :set_course, :only => [:index, :new, :create, :update_sort_order]
   skip_forgery_protection
 
   # GET /assignments or /assignments.json
@@ -67,14 +67,18 @@ class AssignmentsController < ApplicationController
   end
 
   def update_sort_order
-    raise params.inspect
-    # id => sort_index
-    #
-    # {
-    #   1 => 0,
-    #   4 => 1,
-    #   3 => 2,
-    # }
+    @assignments = @course.assignments
+
+    json = params["_json"]
+
+    hash = json.map do |json|
+      id = json["id"].match(/\d+/).to_s
+      sort_order = json["sort_order"]
+
+      @assignments.find(id).update(sort_index: sort_order)
+    end
+
+    render json: { :status => "ok" }
   end
 
   private
