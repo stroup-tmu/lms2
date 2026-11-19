@@ -57,7 +57,7 @@ async function submitAssignmentForm() {
 
   disableForm();
 
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   try {
     const response = await fetch(url, {
@@ -94,7 +94,12 @@ async function submitAssignmentForm() {
       modal_body.append(form);
     };
   } catch {
-    console.log("error");
+    enableForm();
+
+    const error_container = document.getElementById("assignment-form-errors");
+    const error_message = "A network error occured. Please try again.";
+
+    error_container.innerHTML = error_message;
   }
 };
 

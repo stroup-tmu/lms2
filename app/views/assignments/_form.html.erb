@@ -1,7 +1,7 @@
 <%= form_with(model: assignment, :url => assignment_form_path(assignment), :id => "assignment-form") do |form| %>
   <div class="modal-body">
-    <% if assignment.errors.any? %>
-      <div style="color: red">
+    <div id="assignment-form-errors" style="color: red">
+      <% if assignment.errors.any? %>
         <h2><%= pluralize(assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
 
         <ul>
@@ -9,8 +9,8 @@
             <li><%= error.full_message %></li>
           <% end %>
         </ul>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
     <div>
       <%= form.label :title, class: "form-label" %>
